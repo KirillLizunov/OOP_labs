@@ -103,10 +103,28 @@ BitString BitString::operator-(const BitString& other) const {
 
 
     for (size_t i = 0; i < size; ++i) {
-        if (bitArray[i] < other.bitArray[i]) {
-            *resultPtr++ = (*lhsPtr++ - *rhsPtr++ + 2) % 2;
-        }
+        *resultPtr++ = (*lhsPtr++ - *rhsPtr++ + 2) % 2;
     }
+
+    BitString result(size + 1); // бит под знак
+    unsigned char* resultPtr = result.bitArray;
+    unsigned char* lhsPtr = bitArray;
+    unsigned char* rhsPtr = other.bitArray;
+
+    bool carry = false;
+    for (size_t i = 0; i < size; ++i) {
+        unsigned char lhsBit = lhsPtr[i];
+        unsigned char rhsBit = rhsPtr[i];
+        unsigned char diff = lhsBit - rhsBit - carry;
+        if (diff < 0) {
+            diff += 2;
+            carry = true;
+        } else {
+            carry = false;
+        }
+        resultPtr[i + 1] = diff;
+    }
+    resultPtr[0] = carry ? 1 : 0; // бит знака
 
     return result;
 }
