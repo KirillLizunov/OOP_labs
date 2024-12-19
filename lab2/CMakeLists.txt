@@ -17,11 +17,11 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Добавление основной программы
-add_executable(bitstring BitString.cpp main.cpp)
+add_executable(bitstring src/BitString.cpp main.cpp)
 
 # Добавление тестов
 enable_testing()
-add_executable(tests test/test01.cpp BitString.cpp) 
+add_executable(tests test/test01.cpp src/BitString.cpp) 
 target_link_libraries(tests gtest_main)
 
 # Добавление тестов в тестовый набор
