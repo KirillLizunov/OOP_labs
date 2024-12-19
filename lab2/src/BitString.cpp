@@ -159,6 +159,47 @@ BitString& BitString::operator-=(const BitString& other) {
     return *this;
 }
 
+bool BitString::operator==(const BitString& other) const {
+    if (size != other.size) {
+        return false;
+    }
+    for (size_t i = 0; i < size; ++i) {
+        if (bitArray[i] != other.bitArray[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool BitString::operator!=(const BitString& other) const {
+    return !(*this == other);
+}
+
+bool BitString::operator<(const BitString& other) const {
+    if (size != other.size) {
+        return size < other.size;
+    }
+    for (size_t i = 0; i < size; ++i) {
+        if (bitArray[i] < other.bitArray[i]) {
+            return true;
+        } else if (bitArray[i] > other.bitArray[i]) {
+            return false;
+        }
+    }
+    return false;
+}
+
+bool BitString::operator>(const BitString& other) const {
+    return other < *this;
+}
+
+bool BitString::operator<=(const BitString& other) const {
+    return !(other < *this);
+}
+
+bool BitString::operator>=(const BitString& other) const {
+    return !(*this < other);
+}
 
 std::ostream& operator<<(std::ostream& os, const BitString& bitStr) {
     for (unsigned char* ptr = bitStr.bitArray; ptr != bitStr.end; ++ptr) {

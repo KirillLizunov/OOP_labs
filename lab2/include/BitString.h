@@ -29,6 +29,13 @@ public:
     BitString& operator+=(const BitString& other);
     BitString& operator-=(const BitString& other);
 
+    bool operator==(const BitString& other) const;
+    bool operator!=(const BitString& other) const;
+    bool operator<(const BitString& other) const;
+    bool operator>(const BitString& other) const;
+    bool operator<=(const BitString& other) const;
+    bool operator>=(const BitString& other) const;
+
     friend std::ostream& operator<<(std::ostream& os, const BitString& bitStr);
     size_t getSize() const { return size; } 
 };
