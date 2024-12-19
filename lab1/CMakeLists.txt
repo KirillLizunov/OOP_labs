@@ -22,11 +22,11 @@ if(NOT gtest_SOURCE_DIR)
 endif()
 
 # Добавление основной программы
-add_executable(replacer sol.cpp main.cpp)
+add_executable(replacer src/sol.cpp main.cpp)
 
 # Добавление тестов
 enable_testing()
-add_executable(tests test/test01.cpp sol.cpp)
+add_executable(tests test/test01.cpp src/sol.cpp)
 target_link_libraries(tests gtest gtest_main)
 
 # Добавление тестов в тестовый набор
