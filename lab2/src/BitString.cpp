@@ -103,7 +103,9 @@ BitString BitString::operator-(const BitString& other) const {
 
 
     for (size_t i = 0; i < size; ++i) {
-        *resultPtr++ = (*lhsPtr++ - *rhsPtr++ + 2) % 2;
+        if (bitArray[i] < other.bitArray[i]) {
+            *resultPtr++ = (*lhsPtr++ - *rhsPtr++ + 2) % 2;
+        }
     }
 
     return result;
