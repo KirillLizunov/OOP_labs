@@ -22,7 +22,10 @@ add_executable(bitstring src/BitString.cpp main.cpp)
 # Добавление тестов
 enable_testing()
 add_executable(tests test/test01.cpp src/BitString.cpp) 
-target_link_libraries(tests gtest_main)
+target_link_libraries(tests gtest gtest_main)
 
 # Добавление тестов в тестовый набор
 add_test(NAME BitStringTests COMMAND tests)
+
+# Указание директорий для поиска заголовочных файлов
+include_directories(include)
